@@ -10,7 +10,12 @@ if [ -z ${GITHUB_REPO+x} ]; then
   exit 1
 fi
 
-cd /home/builder/actions-runner || exit
+if [ -z ${RUNNER_DIR+x} ]; then
+  echo "RUNNER_DIR variable is not set. Aborting..."
+  exit 1
+fi
+
+cd "${RUNNER_DIR}" || exit
 
 ./config.sh --url "https://github.com/${GITHUB_REPO}" --token "${GITHUB_RUNNER_TOKEN}" --labels yocto,x64,linux
 
