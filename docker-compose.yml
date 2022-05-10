@@ -4,12 +4,21 @@ services:
   xoros-builder:
     build: .
     restart: unless-stopped
+    cpu_count: 8
+    deploy:
+      resources:
+        limits:
+          cpus: '8.00'
+          memory: '32G'
     environment:
       - GITHUB_REPO
       - GITHUB_RUNNER_TOKEN
     volumes:
-      - yocto_cache:/home/builder/cache
+      - type: volume
+        source: xoros_builder
+        target: /home/builder
+        volume:
+          nocopy: true
 
 volumes:
-  yocto_cache:
-    driver: local
+  xoros_builder:
