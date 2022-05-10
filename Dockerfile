@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # Add a label pointing to our repository
 LABEL org.opencontainers.image.source="https://github.com/xoros-repo/xoros-builder"
-LABEL org.opencontainers.image.base.name="ghcr.io/xoros-repo/xoros-builder"
+#LABEL org.opencontainers.image.base.name="ghcr.io/xoros-repo/xoros-builder"
 
 # set the github runner version
 ARG RUNNER_VERSION="2.291.1"
