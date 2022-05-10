@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  xoros-builder:
+    build: .
+    restart: unless-stopped
+    environment:
+      - GITHUB_REPO
+      - GITHUB_RUNNER_TOKEN
+    volumes:
+      - yocto_cache:/home/builder/cache
+      - actions_runner:/home/builder/actions-runner
+
+volumes:
+  yocto_cache:
+    driver: local
+  actions_runner:
+    driver: local
