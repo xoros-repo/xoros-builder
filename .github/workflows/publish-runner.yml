@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish Runner image
 
 on:
   workflow_dispatch:
@@ -44,11 +44,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
-      - name: Build and push
+      - name: Build dependency image
+        run: |
+          docker build . --tag=ghcr.io/${{ github.repository }}:latest
+
+      - name: Build image and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: github-runner
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}-github-runner:latest

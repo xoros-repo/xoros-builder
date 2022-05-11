@@ -2,7 +2,7 @@ version: '3'
 
 services:
   xoros-builder:
-    build: .
+    build: ..
     restart: unless-stopped
     cpu_count: 8
     deploy:
