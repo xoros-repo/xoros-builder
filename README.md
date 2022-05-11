@@ -14,7 +14,7 @@ git clone https://github.com/xoros-repo/xoros-builder.git
 
 To get your Github runner token, go to repository Settings -> Actions -> Runners -> New self-hosted runner.
 
-> ![img.png](docs/img/img.png)
+> ![runner-token.png](docs/img/runner-token.png)
 
 Example `.env` file:
 
