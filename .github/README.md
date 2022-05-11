@@ -2,7 +2,7 @@
 
 ## Publishing
 
-These actions require these secrets present:
+These actions may require the following secrets present:
 
 ```dotenv
 DOCKER_USERNAME
