@@ -4,13 +4,13 @@ FROM ubuntu:18.04
 LABEL org.opencontainers.image.source="https://github.com/xoros-repo/xoros-builder"
 
 # set the github runner version
-ARG RUNNER_VERSION="2.291.1"
+ARG GITHUB_RUNNER_VERSION="2.291.1"
 
 # update the base packages and add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m builder
 
 WORKDIR /home/builder
-ENV RUNNER_DIR=/home/builder/actions-runner
+ENV GITHUB_RUNNER_DIR=/home/builder/actions-runner
 
 ENV PACKAGES="curl \
     jq \
@@ -49,12 +49,12 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 # cd into the user directory, download and unzip the github actions runner
-RUN mkdir -p "${RUNNER_DIR}" && cd "${RUNNER_DIR}" \
-    && wget -nv "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz" \
-    && tar xzf "./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
+RUN mkdir -p "${GITHUB_RUNNER_DIR}" && cd "${GITHUB_RUNNER_DIR}" \
+    && wget -nv "https://github.com/actions/runner/releases/download/v${GITHUB_RUNNER_VERSION}/actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz" \
+    && tar xzf "./actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz"
 
 # install some additional dependencies
-RUN chown -R builder ~builder && ${RUNNER_DIR}/bin/installdependencies.sh
+RUN chown -R builder ~builder && ${GITHUB_RUNNER_DIR}/bin/installdependencies.sh
 
 # copy over the docker scripts
 COPY scripts/ /usr/bin/

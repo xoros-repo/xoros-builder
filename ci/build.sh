@@ -9,7 +9,7 @@ fi
 
 set -x
 
-PACKAGE_NAME=xoros-builder
+PACKAGE_NAME=ghcr.io/xoros-repo/xoros-builder
 GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 GIT_COMMIT=$(git log -1 --pretty=format:"%h")
 
