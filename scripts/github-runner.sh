@@ -5,7 +5,7 @@ if [ -z ${GITHUB_RUNNER_TOKEN+x} ]; then
   exit 1
 fi
 
-if [ -z ${GITHUB_REPO+x} ]; then
+if [ -z ${GITHUB_RUNNER_REPO+x} ]; then
   echo "GITHUB_REPO variable is not set. Aborting..."
   exit 1
 fi
@@ -17,7 +17,7 @@ fi
 
 cd "${RUNNER_DIR}" || exit
 
-./config.sh --url "https://github.com/${GITHUB_REPO}" --token "${GITHUB_RUNNER_TOKEN}" --labels yocto,x64,linux
+./config.sh --url "https://github.com/${GITHUB_RUNNER_REPO}" --token "${GITHUB_RUNNER_TOKEN}" --labels yocto,x64,linux
 
 cleanup() {
     echo "Removing runner..."

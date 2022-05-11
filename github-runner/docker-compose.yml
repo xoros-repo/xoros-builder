@@ -4,6 +4,7 @@ services:
   xoros-builder:
     build: ..
     restart: unless-stopped
+    entrypoint: github-runner.sh
     cpu_count: 8
     deploy:
       resources:
@@ -11,7 +12,7 @@ services:
           cpus: '8.00'
           memory: '32G'
     environment:
-      - GITHUB_REPO
+      - GITHUB_RUNNER_REPO
       - GITHUB_RUNNER_TOKEN
     volumes:
       - type: volume
