@@ -41,7 +41,7 @@ ENV PACKAGES="curl \
 # install python and the packages the your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
 RUN TZ=GMT DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends ${PACKAGES}
+    apt-get install -q -y --no-install-recommends ${PACKAGES}
 
 # Update the locales to UTF-8
 RUN locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 \
