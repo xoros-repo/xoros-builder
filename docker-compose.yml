@@ -15,11 +15,7 @@ services:
       - GITHUB_RUNNER_TOKEN
       - YOCTO_CACHE_DIR
     volumes:
-      - type: volume
-        source: xoros_builder_cache
-        target: ${YOCTO_CACHE_DIR}
-        volume:
-          nocopy: true
+      - xoros_builder_cache:${YOCTO_CACHE_DIR}
 
 volumes:
   xoros_builder_cache:
