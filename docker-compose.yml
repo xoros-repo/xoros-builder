@@ -13,9 +13,9 @@ services:
     environment:
       - GITHUB_RUNNER_REPO
       - GITHUB_RUNNER_TOKEN
-      - CACHE_DIR
+      - BUILDER_CACHE_DIR
     volumes:
-      - xoros_builder_cache:${CACHE_DIR}
+      - builder_cache:${CACHE_DIR}
 
 volumes:
-  xoros_builder_cache:
+  builder_cache:
