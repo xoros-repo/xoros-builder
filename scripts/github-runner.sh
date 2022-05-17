@@ -6,12 +6,12 @@ if [ -z ${GITHUB_RUNNER_TOKEN+x} ]; then
 fi
 
 if [ -z ${GITHUB_RUNNER_REPO+x} ]; then
-  echo "GITHUB_REPO variable is not set. Aborting..."
+  echo "GITHUB_RUNNER_REPO variable is not set. Aborting..."
   exit 1
 fi
 
 if [ -z ${GITHUB_RUNNER_DIR+x} ]; then
-  echo "RUNNER_DIR variable is not set. Aborting..."
+  echo "GITHUB_RUNNER_DIR variable is not set. Aborting..."
   exit 1
 fi
 

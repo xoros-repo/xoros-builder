@@ -35,6 +35,7 @@ GITHUB_RUNNER_TOKEN=AABBCCDDEEFFGGHHIIJJKKLLMMNNO
 ```
 
 To get your GitHub runner token, go to repository Settings -> Actions -> Runners -> New self-hosted runner.
+Please 
 
 > ![runner-token.png](docs/img/runner-token.png)
 
