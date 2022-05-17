@@ -15,7 +15,7 @@ services:
       - GITHUB_RUNNER_TOKEN
       - BUILDER_CACHE_DIR
     volumes:
-      - builder_cache:${CACHE_DIR}
+      - builder_cache:${BUILDER_CACHE_DIR}
 
 volumes:
   builder_cache:
