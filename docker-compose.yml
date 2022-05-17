@@ -5,7 +5,6 @@ services:
     build: .
     restart: unless-stopped
     entrypoint: github-runner.sh
-    cpu_count: 8
     deploy:
       resources:
         limits:
