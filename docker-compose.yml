@@ -2,6 +2,7 @@ version: '3'
 
 services:
   xoros-builder:
+    user: "1000"
     build: .
     restart: unless-stopped
     entrypoint: github-runner.sh
