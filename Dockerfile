@@ -49,12 +49,14 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 # cd into the user directory, download and unzip the github actions runner
-RUN mkdir -p "${GITHUB_RUNNER_DIR}" && cd "${GITHUB_RUNNER_DIR}" \
+RUN mkdir -p "${GITHUB_RUNNER_DIR}" \
+    && cd "${GITHUB_RUNNER_DIR}" \
     && wget -nv "https://github.com/actions/runner/releases/download/v${GITHUB_RUNNER_VERSION}/actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz" \
     && tar xzf "./actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz"
 
 # install some additional dependencies
-RUN chown -R builder ~builder && ${GITHUB_RUNNER_DIR}/bin/installdependencies.sh
+RUN chown -R builder ~builder \
+    && ${GITHUB_RUNNER_DIR}/bin/installdependencies.sh
 
 # copy over the docker scripts
 COPY scripts/ /usr/bin/
@@ -62,7 +64,11 @@ COPY scripts/ /usr/bin/
 # make sure scripts are executable
 RUN chmod +x /usr/bin/*.sh
 
-RUN mkdir -p cache && chown -R builder:builder cache
+RUN mkdir -p cache \
+    && chown -R builder:builder cache
+
+### Install rclone (https://rclone.org/#about)
+RUN curl https://rclone.org/install.sh | bash
 
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "builder" so all subsequent commands are run as the builder user
