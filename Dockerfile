@@ -62,6 +62,8 @@ COPY scripts/ /usr/bin/
 # make sure scripts are executable
 RUN chmod +x /usr/bin/*.sh
 
+RUN mkdir -p cache && chown -R builder:builder cache
+
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "builder" so all subsequent commands are run as the builder user
 USER builder
