@@ -48,8 +48,11 @@ RUN apt-get install -q -y --no-install-recommends \
     ${BUILDER_TOOLS_PACKAGES} ${BUILDER_LIBRARIES_PACKAGES}
 
 ### Update the locales to UTF-8:
-RUN locale-gen "en_US.UTF-8" \
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+    && locale-gen \
+    && echo "Supported locales: $(locale -a | tr '\n' ',')" \
     && dpkg-reconfigure locales
+
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
