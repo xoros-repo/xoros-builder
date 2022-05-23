@@ -1,16 +1,15 @@
-version: '3'
+version: '3.4'
 
 services:
   xoros-builder:
-    build: .
+    build:
+      context: .
+      network: host
     image: ghcr.io/xoros-repo/xoros-builder:latest
     restart: unless-stopped
     entrypoint: github-runner.sh
-    deploy:
-      resources:
-        limits:
-          cpus: '8.00'
-          memory: '32G'
+    cpu_count: 8
+    mem_reservation: 16g
     environment:
       - GITHUB_RUNNER_REPO
       - GITHUB_RUNNER_TOKEN
