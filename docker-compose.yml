@@ -3,6 +3,7 @@ version: '3'
 services:
   xoros-builder:
     build: .
+    image: ghcr.io/xoros-repo/xoros-builder:latest
     restart: unless-stopped
     entrypoint: github-runner.sh
     deploy:
