@@ -16,6 +16,7 @@ RUN apt-get update -y \
 
 WORKDIR /home/builder
 ENV GITHUB_RUNNER_DIR=/home/builder/actions-runner
+ENV DEBIAN_FRONTEND=noninteractive
 
 ENV BUILDER_TOOLS_PACKAGES="\
     build-essential \
@@ -42,15 +43,15 @@ ENV BUILDER_LIBRARIES_PACKAGES="\
 "
 
 ### Install packages:
-RUN TZ=GMT DEBIAN_FRONTEND=noninteractive \
+RUN TZ=GMT \
     apt-get install -q -y --no-install-recommends \
     ${BUILDER_TOOLS_PACKAGES} ${BUILDER_LIBRARIES_PACKAGES}
 
 ### Update the locales to UTF-8:
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
 RUN locale-gen "en_US.UTF-8" \
     && dpkg-reconfigure locales
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 ### Download and unzip the github actions runner:
 RUN mkdir -p "${GITHUB_RUNNER_DIR}" \
