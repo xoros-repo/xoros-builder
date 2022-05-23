@@ -17,6 +17,7 @@ RUN apt-get update -y \
 WORKDIR /home/builder
 ENV GITHUB_RUNNER_DIR=/home/builder/actions-runner
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=GMT
 
 ENV BUILDER_TOOLS_PACKAGES="\
     build-essential \
@@ -43,8 +44,7 @@ ENV BUILDER_LIBRARIES_PACKAGES="\
 "
 
 ### Install packages:
-RUN TZ=GMT \
-    apt-get install -q -y --no-install-recommends \
+RUN apt-get install -q -y --no-install-recommends \
     ${BUILDER_TOOLS_PACKAGES} ${BUILDER_LIBRARIES_PACKAGES}
 
 ### Update the locales to UTF-8:
