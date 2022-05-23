@@ -10,7 +10,9 @@ ARG GITHUB_RUNNER_VERSION="2.291.1"
 RUN sed -r -i 's/^deb(.*)$/deb\1 contrib/g' /etc/apt/sources.list
 
 ### Update the base packages and add a non-sudo user:
-RUN apt-get update -y && apt-get upgrade -y && useradd -m builder
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && useradd -m builder
 
 WORKDIR /home/builder
 ENV GITHUB_RUNNER_DIR=/home/builder/actions-runner
@@ -45,10 +47,10 @@ RUN TZ=GMT DEBIAN_FRONTEND=noninteractive \
     ${BUILDER_TOOLS_PACKAGES} ${BUILDER_LIBRARIES_PACKAGES}
 
 ### Update the locales to UTF-8:
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 RUN locale-gen "en_US.UTF-8" \
     && dpkg-reconfigure locales
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
 
 ### Download and unzip the github actions runner:
 RUN mkdir -p "${GITHUB_RUNNER_DIR}" \
